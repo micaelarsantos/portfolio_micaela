@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Micaela Santos | Portfolio</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+<style>
+
+:root{
+    --primary:#ffb300;
+    --dark:#121212;
+    --light:#ffffff;
+}
+
+body{
+    font-family:Segoe UI,sans-serif;
+    scroll-behavior:smooth;
+}
+
+.navbar{
+    backdrop-filter:blur(10px);
+    background:rgba(255,255,255,.9);
+}
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    background:linear-gradient(135deg,#fff,#f4f4f4);
+}
+
+.hero img{
+    width:350px;
+    animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-15px)}
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:50px;
+    font-weight:bold;
+}
+
+.skill{
+    margin-bottom:20px;
+}
+
+.progress{
+    height:12px;
+}
+
+.tech-card.html i { color:#E34F26; }
+.tech-card.css i { color:#1572B6; }
+.tech-card.js i { color:#F7DF1E; }
+.tech-card.bootstrap i { color:#7952B3; }
+.tech-card.avax i { color:#E84142; }
+.tech-card.php i{ color:#777BB4;}
+.tech-card.laravel i{ color:#FF2D20;}
+.tech-card.git i{ color:#F05032;}
+.tech-card.github i{ color:#181717;}
+.tech-card.mysql i{ color:#4479A1;}
+.tech-card.figma i{ color:#F24E1E;}
+.tech-card.wordpress i{ color:#21759B;}
+.tech-card.react i{ color:#61DAFB;}
+
+.tech-card{
+    background: white;
+    border-radius: 20px;
+    padding: 30px 20px;
+    text-align: center;
+    transition: all .35s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,.08);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.tech-card:hover{
+    transform: translateY(-12px) scale(1.04);
+    box-shadow: 0 20px 45px rgba(0,0,0,.18);
+}
+
+
+/* glow leve por baixo */
+.tech-card::after{
+    content:"";
+    position:absolute;
+    bottom:-50px;
+    left:50%;
+    transform:translateX(-50%);
+    width:120px;
+    height:120px;
+    background: radial-gradient(circle, rgba(255,179,0,.25), transparent 70%);
+    opacity:0;
+    transition:.4s;
+}
+
+.tech-card:hover::after{
+    opacity:1;
+}
+
+
+.project-card{
+    border:none;
+    overflow:hidden;
+    transition:.4s;
+    cursor:pointer;
+}
+
+.project-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
+
+.counter{
+    font-size:3rem;
+    font-weight:bold;
+    color:var(--primary);
+}
+
+.timeline{
+    border-left:3px solid var(--primary);
+    padding-left:20px;
+}
+
+.timeline-item{
+    margin-bottom:30px;
+    position:relative;
+}
+
+.timeline-item::before{
+    content:"";
+    width:15px;
+    height:15px;
+    background:var(--primary);
+    border-radius:50%;
+    position:absolute;
+    left:-29px;
+    top:5px;
+}
+
+footer{
+    background:#111;
+    color:white;
+    padding:30px;
+}
+
+/* ===== DARK MODE COMPLETO ===== */
+
+.dark-mode{
+    background:#0f172a;
+    color:#e2e8f0;
+    transition:all .3s ease;
+}
+
+/* Navbar */
+.dark-mode .navbar{
+    background:rgba(15,23,42,.95) !important;
+    backdrop-filter:blur(15px);
+}
+
+.dark-mode .navbar-brand,
+.dark-mode .nav-link{
+    color:#f8fafc !important;
+}
+
+.dark-mode .nav-link:hover{
+    color:#ffb300 !important;
+}
+
+/* Secções claras */
+.dark-mode .bg-light{
+    background:#111827 !important;
+}
+
+/* Cards */
+.dark-mode .card{
+    background:rgba(30,41,59,.8);
+    border:1px solid rgba(255,255,255,.08);
+    color:#254b72;
+}
+
+/* Hero */
+.dark-mode .hero{
+    background:radial-gradient(circle at top left,#1e293b,#0f172a);
+}
+
+/* Textos */
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode h5,
+.dark-mode p{
+    color:#f8fafc;
+}
+
+/* Timeline */
+.dark-mode .timeline{
+    border-left:3px solid #ffb300;
+}
+
+.dark-mode .timeline-item::before{
+    background:#ffb300;
+}
+
+/* Inputs */
+.dark-mode .form-control {
+    background:#1e293b;
+    border:1px solid #334155;
+    color:white;
+}
+
+
+.dark-mode .tech-card{
+    background:#1e293b;
+    border:1px solid #334155;
+    color:white;
+}
+
+.dark-mode .form-control::placeholder{
+    color:#94a3b8;
+}
+
+.dark-mode .form-control:focus{
+    background:#273449;
+    border-color:#ffb300;
+    color:white;
+    box-shadow:0 0 0 .2rem rgba(255,179,0,.25);
+}
+
+/* Footer */
+.dark-mode footer{
+    background:#020617;
+}
+
+/* Progress */
+.dark-mode .progress{
+    background:#334155;
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar navbar-expand-lg fixed-top">
+<div class="container">
+
+<a class="navbar-brand text-uppercase" >
+  <h6>Portfólio - Micaela Santos</h6>
+
+</a>
+
+<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="menu">
+<ul class="navbar-nav ms-auto me-3">
+
+<li class="nav-item">
+<a class="nav-link" href="#skills">Tecnologias</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="#projetos">Projetos</a>
+</li>
+
+
+<li class="nav-item">
+<a class="nav-link" href="#percurso">Percurso Académico</a>
+</li>
+
+
+
+</ul>
+
+<button id="themeBtn" class="btn btn-outline-warning">
+🌙
+</button>
+
+</div>
+</div>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+<div class="container">
+<div class="row align-items-center">
+
+<div class="col-lg-6">
+
+<h3 class="text-warning fw-bold">Olá!</h3>
+
+<h1 class="display-3 fw-bold">
+Micaela Santos
+</h1>
+
+<p class="lead me-3 pe-5">
+    Sou licenciada em Informática e Multimédia pelo Instituto Politécnico de Castelo Branco, com formação prévia em Desenvolvimento Web e Multimédia pelo Instituto Politécnico de Leiria e formação de Formadores.
+
+Tenho interesse nas áreas de Tecnologias da Informação, Web Design, Front-End e Desenvolvimento Digital. Sou uma pessoa motivada, com gosto por aprendizagem contínua e pela criação de soluções digitais funcionais e bem estruturadas.</p>
+
+
+<div class="mt-3">
+    <a href="https://www.linkedin.com/in/micaela-r-santos/" target="_blank" class="btn btn-secondary me-2">
+        <i class="fa-brands fa-linkedin"></i> LinkedIn
+    </a>
+
+    <a href="https://www.behance.net/micaeladossantos" target="_blank" class="btn btn-primary">
+        <i class="fa-brands fa-behance"></i> Behance
+    </a>
+</div>
+
+</div>
+
+<div class="col-lg-6 text-center">
+
+<img src="img/img1.png" class="img-fluid">
+
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- SKILLS / TECNOLOGIAS -->
+
+<section id="skills" class="py-5">
+
+<div class="container">
+
+<h2 class="section-title">Tecnologias</h2>
+
+<div class="row g-4 justify-content-center">
+
+<!-- HTML -->
+<div class="col-md-3 col-6">
+<div class="tech-card html">
+<i class="fa-brands fa-html5 fa-2x"></i>
+<h5>HTML5</h5>
+<span>Estrutura Web</span>
+</div>
+</div>
+
+<!-- CSS -->
+<div class="col-md-3 col-6">
+<div class="tech-card css">
+<i class="fa-brands fa-css3-alt fa-2x"></i>
+<h5>CSS3</h5>
+<span>Design & Estilo</span>
+</div>
+</div>
+
+<!-- JS -->
+<div class="col-md-3 col-6">
+<div class="tech-card js">
+<i class="fa-brands fa-js fa-2x"></i>
+<h5>JavaScript</h5>
+<span>Interatividade</span>
+</div>
+</div>
+
+<!-- Bootstrap -->
+<div class="col-md-3 col-6">
+<div class="tech-card bootstrap">
+<i class="fa-brands fa-bootstrap fa-2x"></i>
+<h5>Bootstrap</h5>
+<span>UI Framework</span>
+</div>
+</div>
+
+<!-- PHP -->
+<div class="col-md-3 col-6">
+    <div class="tech-card php">
+        <i class="fa-brands fa-php fa-2x"></i>
+        <h5>PHP</h5>
+        <span>Back-End</span>
+    </div>
+</div>
+
+<!-- Laravel -->
+<div class="col-md-3 col-6">
+    <div class="tech-card laravel">
+        <i class="fa-brands fa-laravel fa-2x"></i>
+        <h5>Laravel</h5>
+        <span>MVC Framework</span>
+    </div>
+</div>
+
+<!-- Git -->
+<div class="col-md-3 col-6">
+<div class="tech-card git">
+<i class="fa-brands fa-git-alt fa-2x"></i>
+<h5>Git</h5>
+<span>Versionamento</span>
+</div>
+</div>
+
+<!-- GitHub -->
+<div class="col-md-3 col-6">
+<div class="tech-card github">
+<i class="fa-brands fa-github fa-2x"></i>
+<h5>GitHub</h5>
+<span>Repositório</span>
+</div>
+</div>
+
+<!-- MySQL -->
+<div class="col-md-3 col-6">
+<div class="tech-card mysql">
+<i class="fa-solid fa-database fa-2x"></i>
+<h5>MySQL</h5>
+<span>Base de Dados</span>
+</div>
+</div>
+
+<!-- Figma -->
+<div class="col-md-3 col-6">
+<div class="tech-card figma">
+<i class="fa-brands fa-figma fa-2x"></i>
+<h5>Figma</h5>
+<span>UI/UX Design</span>
+</div>
+</div>
+
+<!-- WordPress -->
+<div class="col-md-3 col-6">
+<div class="tech-card wordpress">
+<i class="fa-brands fa-wordpress fa-2x"></i>
+<h5>WordPress</h5>
+<span>CMS</span>
+</div>
+</div>
+
+<!-- React -->
+<div class="col-md-3 col-6">
+<div class="tech-card react">
+<i class="fa-brands fa-react fa-2x"></i>
+<h5>React</h5>
+<span>Biblioteca de JavaScript</span>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- PROJETOS -->
+
+<section id="projetos" class="py-5 bg-light">
+
+<div class="container">
+
+<h2 class="section-title">Projetos</h2>
+
+<div class="row g-4">
+
+
+<div class="col-md-4">
+<div class="card project-card">
+<div class="card-body">
+    <img src="img/event_cluster.png" class="card-img-top" alt="Projeto Event Cluster">
+<h5 class="ms-3 text-center p-3">Projeto Event Cluster</h5>
+<p>O EventCluster é uma plataforma web para criação e gestão de eventos através de templates personalizados.
+
+O objetivo do projeto é facilitar a criação de sites de eventos, permitindo aos utilizadores escolher, personalizar e reutilizar modelos de forma simples.
+
+A aplicação foi desenvolvida com Laravel no backend. No frontend foram usadas tecnologias como HTML, CSS, Bootstrap e JavaScript, juntamente com bibliotecas como jQuery, DataTables e Font Awesome.
+
+A plataforma inclui funcionalidades como criação de formulários dinâmicos, onde foi usado FormBuilder, tornando a gestão de eventos mais prática.
+</p>
+<p class="text-muted">
+Projeto académico em grupo.
+</p>
+  <a href="https://github.com/micaelarsantos/ProjetoI.git" target="_blank" class="btn btn-sm btn-dark me-3">
+        Ver Repositório
+  </a>
+</div>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card project-card">
+<div class="card-body">
+    <img src="img/sistema_reserva.png" class="card-img-top" alt="Sistema para reservas">
+<h5 class="ms-3 text-center p-3">Sistema para reservas online de um restaurante "Ristorante"</h5>
+<p>Este trabalho consiste numa plataforma de gestão de reservas para um restaurante, acompanhada por uma <i>single page</i> onde os utilizadores podem consultar informações e ementas do restaurante. 
+  O sistema inclui funcionalidades de registo e login, com diferentes perfis de utilizador (visitante, cliente, chefe de mesa e administrador), cada um com permissões específicas.
+
+A informação é armazenada numa base de dados SQL, de forma a reduzir redundância e otimizar a gestão de dados. O projeto foi desenvolvido com PHP, HTML, CSS e o framework Bootstrap.</p>
+<p class="text-muted">
+Projeto académico em grupo.
+</p>
+  <a href="https://github.com/micaelarsantos/EduardoSantos_MicaelaSantos.git" target="_blank" class="btn btn-sm btn-dark me-3">
+        Ver Repositório
+  </a>
+</div>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- TIMELINE -->
+
+<section class="py-5">
+
+<div class="container">
+
+<h2 id="percurso" class="section-title">Percurso Académico</h2>
+
+<div class="timeline">
+
+<div class="timeline-item">
+<h5>Licenciatura em Informática e Multimédia</h5>
+<p class="fw-bold">Instituto Politécnico de Castelo Branco</p>
+</div>
+
+<div class="timeline-item">
+<h5>Curso Técnico Superior Profissional, Desenvolvimento Web e Multimédia</h5>
+<p class="fw-bold">Politécnico de Leiria</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<footer class="text-center">
+<p>© 2026 Micaela Santos</p>
+</footer>
+
+<script>
+
+const themeBtn = document.getElementById("themeBtn");
+
+/* manter preferência */
+if(localStorage.getItem("theme") === "dark"){
+    document.body.classList.add("dark-mode");
+    themeBtn.innerHTML = "☀️";
+}
+
+themeBtn.addEventListener("click", () => {
+
+    document.body.classList.toggle("dark-mode");
+
+    if(document.body.classList.contains("dark-mode")){
+        localStorage.setItem("theme","dark");
+        themeBtn.innerHTML = "☀️";
+    }else{
+        localStorage.setItem("theme","light");
+        themeBtn.innerHTML = "🌙";
+    }
+
+});
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
